@@ -1,12 +1,11 @@
 import React from 'react';
+import {vote} from './reducers/anecdoteReducer'
 
 const App = (props) => {
   const anecdotes = props.store.getState()
+  const store = props.store
   
-  const vote = (id) => {
-    console.log('vote', id)
-  }
-  
+
   return (
     <div>
       <h2>Anecdotes</h2>
@@ -17,7 +16,12 @@ const App = (props) => {
           </div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => 
+              store.dispatch(vote(anecdote.id))
+            }
+            >
+            vote 
+            </button>
           </div>
         </div>
       )}
