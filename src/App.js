@@ -5,8 +5,9 @@ import AnecdoteList from './components/AnecdoteList'
 const App = (props) => {
 
   return (
+    
     <div>
-      <h2>Anecdotes</h2>
+      {props.store.getState().notification}
         <AnecdoteList store = {props.store} />
         <NewAnecdote store = {props.store} />
     </div>

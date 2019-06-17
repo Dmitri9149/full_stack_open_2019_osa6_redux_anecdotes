@@ -4,8 +4,8 @@
 const initialState = 'Initial notification'
 
 const notificationReducer = (state = initialState, action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
+  console.log('state now notification: ', state)
+  console.log('action notification', action)
 
   switch (action.type) {
     case 'SET_NOTIFICATION':
