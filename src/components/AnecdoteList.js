@@ -3,10 +3,17 @@ import { vote } from '../reducers/anecdoteReducer'
 import { notificationChange } from '../reducers/notificationReducer'
 
 const AnecdoteList = ({store}) => {
+  const filter = store.getState().filter
+  const anecdotes = store.getState().anecdotes
+  const anecdotesToShow = filter.length === 0
+  ? anecdotes 
+  : anecdotes.filter(p => p.content.toLowerCase().includes(filter.toLowerCase()) )
   return (
-    <div>
+        <div>
       <h2>Anecdotes</h2>
-      {store.getState().anecdotes.map(anecdote =>
+      {console.log('total stock------------->', store.getState())}
+
+      {anecdotesToShow.map(anecdote =>
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
