@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 
 const Notification = (props) => {
 
@@ -16,4 +18,14 @@ const Notification = (props) => {
   )
 }
 
-export default Notification
+const mapStateToProps = (state) => {
+  // joskus on hyödyllistä tulostaa mapStateToProps:ista...
+  console.log(state)
+  return {
+    notification: state.notification
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(Notification)

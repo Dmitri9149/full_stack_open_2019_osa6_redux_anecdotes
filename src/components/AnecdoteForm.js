@@ -1,20 +1,18 @@
 import React from 'react'
 import { createAnecdote } from '../reducers/anecdoteReducer'
 import { notificationChange } from '../reducers/notificationReducer'
+import { connect } from 'react-redux'
 
 const NewAnecdote = (props) => {
 
   const addAnecdote = (event) => {
     event.preventDefault()
-    props.store.dispatch(
-      createAnecdote(event.target.anecdote.value)
-    )
+    props.createAnecdote(event.target.anecdote.value)
     console.log('event--------->' , event.target.anecdote.value)
     const message = event.target.anecdote.value
-    props.store.dispatch(
-      notificationChange(`You just added    ${message}`))
+    props.notificationChange(`You just added    ${message}`)
     setTimeout(() => 
-      props.store.dispatch(notificationChange('')), 5000) 
+      props.notificationChange(''), 5000) 
       event.target.anecdote.value = ''
   
   }
@@ -26,4 +24,21 @@ const NewAnecdote = (props) => {
   )
 }
 
-export default NewAnecdote
+const mapStateToProps = (state) => {
+  // joskus on hyödyllistä tulostaa mapStateToProps:ista...
+  console.log(state)
+  return {
+    notification: state.notification
+  }
+}
+
+const mapDispatchToProps = {
+  createAnecdote,
+  notificationChange
+}
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewAnecdote)
