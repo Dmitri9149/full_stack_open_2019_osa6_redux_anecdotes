@@ -6,7 +6,6 @@ const Filter = (props) => {
     props.store.dispatch(
       createFilter(event.target.value)
     )
-
   }
   const style = {
     marginBottom: 10
