@@ -54,9 +54,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const ConnectedAnecdoteList = connect(
+export default connect(
   mapStateToProps
 )(AnecdoteList)
-
-
-export default ConnectedAnecdoteList
