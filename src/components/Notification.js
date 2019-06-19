@@ -2,8 +2,8 @@ import React from 'react';
 
 const Notification = (props) => {
 
-  console.log('notification store', props.store)
-  console.log('notification store', props.store.getState())
+  console.log('notification store', props)
+  console.log('notification store', props)
   const style = {
     border: 'solid',
     padding: 10,
@@ -11,7 +11,7 @@ const Notification = (props) => {
   }
   return (
     <div style={style}>
-      {props.store.getState().notification}
+      {props.notification}
     </div>
   )
 }

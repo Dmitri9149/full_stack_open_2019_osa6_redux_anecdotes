@@ -4,8 +4,8 @@ import { notificationChange } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
 const AnecdoteList = (props) => {
-  const filter = props.store.getState().filter
-  const anecdotes = props.store.getState().anecdotes
+  const filter = props.filter
+  const anecdotes = props.anecdotes
   const anecdotesToShow = filter.length === 0
   ? anecdotes 
   : anecdotes.filter(p => p.content.toLowerCase().includes(filter.toLowerCase()) )
@@ -14,8 +14,7 @@ const AnecdoteList = (props) => {
   return (
         <div>
       <h2>Anecdotes</h2>
-      {console.log('total stock------------->', props.store.getState())}
-
+  
       {anecdotesToShow.map(anecdote =>
         <div key={anecdote.id}>
           <div>
