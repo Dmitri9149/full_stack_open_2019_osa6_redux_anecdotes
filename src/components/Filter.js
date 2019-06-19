@@ -1,9 +1,9 @@
 import React from 'react'
 import { createFilter } from '../reducers/filterReducer'
 
-const Filter = ({store}) => {
+const Filter = (props) => {
   const handleChange = (event) => {
-    store.dispatch(
+    props.store.dispatch(
       createFilter(event.target.value)
     )
 
