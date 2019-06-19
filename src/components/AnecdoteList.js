@@ -3,9 +3,9 @@ import { vote } from '../reducers/anecdoteReducer'
 import { notificationChange } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
-const AnecdoteList = ({store}) => {
-  const filter = store.getState().filter
-  const anecdotes = store.getState().anecdotes
+const AnecdoteList = (props) => {
+  const filter = props.filter
+  const anecdotes = props.anecdotes
   const anecdotesToShow = filter.length === 0
   ? anecdotes 
   : anecdotes.filter(p => p.content.toLowerCase().includes(filter.toLowerCase()) )
@@ -14,8 +14,7 @@ const AnecdoteList = ({store}) => {
   return (
         <div>
       <h2>Anecdotes</h2>
-      {console.log('total stock------------->', store.getState())}
-
+  
       {anecdotesToShow.map(anecdote =>
         <div key={anecdote.id}>
           <div>
@@ -25,13 +24,13 @@ const AnecdoteList = ({store}) => {
             has {anecdote.votes}
             <button onClick={() => 
               {
-                store.dispatch(vote(anecdote.id))
-                store.dispatch(
+                props.store.dispatch(vote(anecdote.id))
+                props.store.dispatch(
                   notificationChange(`You voted  
                     '${anecdote.content}'`)) 
 
                 setTimeout(() => 
-                  store.dispatch(notificationChange('')), 5000)
+                  props.store.dispatch(notificationChange('')), 5000)
               }
             }
             >

@@ -7,6 +7,9 @@ import Filter from './components/Filter'
 
 const App = (props) => {
 
+  console.log('App.props------------>', props)
+  console.log('app.props.store----------->', props.store)
+
   return (
     
     <div>
