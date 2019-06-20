@@ -4,18 +4,13 @@ import { notificationChange } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
 const AnecdoteList = (props) => {
-  const filter = props.filter
-  const anecdotes = props.anecdotes
-  const anecdotesToShow = filter.length === 0
-  ? anecdotes 
-  : anecdotes.filter(p => p.content.toLowerCase().includes(filter.toLowerCase()) )
 
  
   return (
         <div>
       <h2>Anecdotes</h2>
   
-      {anecdotesToShow.map(anecdote =>
+      {props.visibleAnecdotes.map(anecdote =>
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
@@ -43,13 +38,18 @@ const AnecdoteList = (props) => {
   )
 }
 
+const anecdotesToShow = ({anecdotes, filter}) => {
+
+  return filter.length === 0
+    ? anecdotes 
+    : anecdotes.filter(p => p.content.toLowerCase().includes(filter.toLowerCase()) )
+}
+
 const mapStateToProps = (state) => {
   // joskus on hyödyllistä tulostaa mapStateToProps:ista...
   console.log(state)
   return {
-    anecdotes: state.anecdotes,
-    filter: state.filter,
-    notification: state.notification
+    visibleAnecdotes: anecdotesToShow(state)
   }
 }
 
