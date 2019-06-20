@@ -5,18 +5,16 @@ import Notification from './components/Notification'
 import Filter from './components/Filter'
 
 
-const App = (props) => {
-
-  console.log('App.props------------>', props)
-  console.log('app.props.store----------->', props.store)
+const App = () => {
 
   return (
     
     <div>
-        <Notification store = {props.store} />
-        <Filter store = {props.store} />
-        <AnecdoteList store = {props.store} />
-        <NewAnecdote store = {props.store} />
+      <h1>Programming anecdotes</h1>
+      <Notification  />
+      <Filter  />
+      <AnecdoteList  />
+      <NewAnecdote  />
     </div>
   )
 }
