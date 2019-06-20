@@ -9,10 +9,12 @@ import { initializeAnecdotes } from './reducers/anecdoteReducer'
 
 
 const App = (props) => {
+
+  const initAnecdotes = props.initializeAnecdotes
   useEffect(() => {
     anecdoteService
-      .getAll().then(anecdotes => props.initializeAnecdotes(anecdotes))
-  },[])
+      .getAll().then(anecdotes => initAnecdotes(anecdotes))
+  },[initAnecdotes])
 
   return (
     
