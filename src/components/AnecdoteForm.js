@@ -1,5 +1,5 @@
 import React from 'react'
-import { notificationChange } from '../reducers/notificationReducer'
+import { setNotification } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 import {createAnecdote} from '../reducers/anecdoteReducer'
 
@@ -12,10 +12,7 @@ const NewAnecdote = (props) => {
     event.target.anecdote.value = ''
     props.createAnecdote(content)
 
-    props.notificationChange(`You just added    '${content}'`)
-    setTimeout(() => 
-      props.notificationChange(''), 5000) 
-  
+    props.setNotification(`You just added    '${content}'`, 10)
   }
   return (
     <form onSubmit={addAnecdote}>
@@ -37,5 +34,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {createAnecdote, notificationChange}
+  {createAnecdote, setNotification}
 )(NewAnecdote)
